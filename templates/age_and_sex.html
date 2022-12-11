@@ -8,18 +8,48 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}">
     <title>BCMB 424 - Age and Sex</title>
 </head>
-<body>
-    <table class="table table-striped">
-        <tr>
-            <th>Summary Statistic</th>
-            <th>Value</th>
-        </tr>
-        {% for k,v in sum_stats.items() %}
-            <tr>
-                <td>{{k}}</td>
-                <td>{{v}}</td>
-            </tr>
-        {% endfor %}
-    </table>
+<body class="agesexbody">
+    <div class="container" id="container2">
+        <h1 class="title">Basic Statistics About Age and Sex</h1>
+        <h2>Age</h2>
+        <figure class="figure1">
+            <img src="/b_cancer_age_dist.png" alt="breast cancer age distribution graph">
+            <figcaption><span class="figcaptionbold">Figure 1.</span> Distribution of ages at breast cancer diagnosis for patients in the dataset. Note that each patient's age at diagnosis was recorded as an age range, which can be represented by the numbers on the X-axis.</figcaption>
+        </figure>
+        <figure>
+            <img src="/p_cancer_age_dist.png" alt="prostate cancer age distribution graph">
+            <figcaption><span>Figure 2.</span></figcaption>
+        </figure>
+        <div class="summarystattables">
+            <table class="table table-striped">
+                <tr>
+                    <th>Summary Statistic</th>
+                    <th>Value</th>
+                </tr>
+                {% for k,v in sum_stats_bc.items() %}
+                    <tr>
+                        <td>{{k}}</td>
+                        <td>{{v}}</td>
+                    </tr>
+                {% endfor %}
+                <caption><span>Table 1.</span></caption>
+            </table>
+            <table class="table table-striped">
+                <tr>
+                    <th>Summary Statistic</th>
+                    <th>Value</th>
+                </tr>
+                {% for k,v in sum_stats_pc.items() %}
+                    <tr>
+                        <td>{{k}}</td>
+                        <td>{{v}}</td>
+                    </tr>
+                {% endfor %}
+                <caption><span>Table 2.</span></caption>
+            </table>
+        </div>
+        <h2>Males and Females</h2>
+        <p>Prostate cancer is strictly found in males, and most breast cancer is found in women. According to the <a href="https://www.bcrf.org/blog/male-breast-cancer-statistics-research/">Breast Cancer Research Foundation (BCRF) website</a>, "male breast cancer accounts for less than one percent of all breast cancer diagnoses," so it is quite rare. The breast cancer dataset was evaluated for any rare male patients, but the response returned was only "{{unique_sexes}}".</p>
+    </div>
 </body>
 </html>

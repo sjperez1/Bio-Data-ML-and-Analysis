@@ -1,16 +1,27 @@
 .homebody {
-    
     background-color: #6B9080;
-    /* color: whitesmoke; */
+}
+
+.agesexbody {
+    background-color: #54494B;
 }
 
 .container {
     width: 60%;
     margin: 0 auto;
     margin-top: 40px;
+    margin-bottom: 40px;
     padding: 30px;
-    background-color: #A4C3B2;
     border-radius: 8px;
+}
+
+#container1 {
+    background-color: #A4C3B2;
+}
+
+#container2 {
+    background-color: #CCE3DE;
+
 }
 
 .title {
@@ -18,6 +29,22 @@
     text-decoration: underline;
 }
 
+.figure1 {
+    width: min-content;
+    margin: 0 auto;
+}
+
+.figcaptionbold {
+    font-weight: bold;
+}
+
+.summarystattables {
+    display: flex;
+    margin: 20px;
+}
+
 .table {
     width: 30%;
+    margin: 0 auto;
+    background-color: white;
 }
