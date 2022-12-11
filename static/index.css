@@ -1,0 +1,23 @@
+.homebody {
+    
+    background-color: #6B9080;
+    /* color: whitesmoke; */
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #A4C3B2;
+    border-radius: 8px;
+}
+
+.title {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.table {
+    width: 30%;
+}
