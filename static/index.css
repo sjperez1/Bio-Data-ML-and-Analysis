@@ -2,7 +2,7 @@
     background-color: #6B9080;
 }
 
-.agesexbody {
+.additionalpagebody {
     background-color: #54494B;
 }
 
@@ -19,7 +19,7 @@
     background-color: #A4C3B2;
 }
 
-#container2 {
+#container2, #container3 {
     background-color: #CCE3DE;
 
 }
@@ -29,9 +29,39 @@
     text-decoration: underline;
 }
 
-.figure1 {
-    width: min-content;
+p {
+    text-indent: 50px;
+}
+
+#agedistfigcontainer {
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.twofigures {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.figure {
+    width: 75%;
+    /* using display: block and margin: auto to center the figure within the container */
+    display: block;
+    margin: auto;
+}
+
+.agedistfig {
+    width: 100%;
+    height: auto;
+    /* the following will resize the image to fit in its container */
+    object-fit: contain;
+}
+
+figcaption {
+    position: relative;
+    width: 100%;
 }
 
 .figcaptionbold {
@@ -40,11 +70,24 @@
 
 .summarystattables {
     display: flex;
-    margin: 20px;
+    justify-content: center;
+    gap: 15px;
 }
 
 .table {
-    width: 30%;
-    margin: 0 auto;
     background-color: white;
+    width: 100%;
+    height: min-content;
+    /* the following will resize the image to fit in its container */
+    table-layout: fixed;
+}
+
+th, td {
+    overflow-wrap: break-word;
+}
+
+caption {
+    color: black;
+    position: relative;
+    width: 100%;
 }

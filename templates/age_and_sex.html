@@ -8,18 +8,44 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}">
     <title>BCMB 424 - Age and Sex</title>
 </head>
-<body class="agesexbody">
+<body class="additionalpagebody">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Breast and Prostate Cancer Analysis</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/age_and_sex">Age and Sex</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/machine_learning">Machine Learning</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container" id="container2">
         <h1 class="title">Basic Statistics About Age and Sex</h1>
         <h2>Age</h2>
-        <figure class="figure1">
-            <img src="/b_cancer_age_dist.png" alt="breast cancer age distribution graph">
-            <figcaption><span class="figcaptionbold">Figure 1.</span> Distribution of ages at breast cancer diagnosis for patients in the dataset. Note that each patient's age at diagnosis was recorded as an age range, which can be represented by the numbers on the X-axis.</figcaption>
-        </figure>
-        <figure>
-            <img src="/p_cancer_age_dist.png" alt="prostate cancer age distribution graph">
-            <figcaption><span>Figure 2.</span></figcaption>
-        </figure>
+        <p>After dropping unused columns and remaining rows with missing information from each dataset, 320 samples remain from the breast cancer dataset while 309 samples remain from the prostate cancer dataset. The age at diagnosis is recorded as a range in the breast cancer data set, so to work with a singular number, the middle of the range was found and assigned as the age at diagnosis for the sample (sometimes called 'middle_age').</p>
+        <p>Looking at the distributions of age at diagnosis for the breast cancer (Figure 1) and prostate cancer (Figure 2) datasets, it is apparent that there is a more even distribution for breast cancer samples, although they are both skewed to the right. The highest peak is seen at a younger age in breast cancer compared to in prostate cancer.</p>
+        <div id="agedistfigcontainer">
+            <figure class="twofigures">
+                <img src="/b_cancer_age_dist.png" alt="breast cancer age distribution graph" class="agedistfig">
+                <figcaption><span class="figcaptionbold">Figure 1.</span> Distribution of ages at breast cancer diagnosis for patients in the dataset. Note that each patient's age at diagnosis was recorded as an age range, which can be represented by the numbers on the x-axis.</figcaption>
+            </figure>
+            <figure class="twofigures">
+                <img src="/p_cancer_age_dist.png" alt="prostate cancer age distribution graph" class="agedistfig">
+                <figcaption><span class="figcaptionbold">Figure 2.</span> Distribution of ages at prostate cancer diagnosis for patients in the dataset.</figcaption>
+            </figure>
+        </div>
+        <p>Summary statistics for age of diagnosis in breast cancer data and prostate cancer data can be seen in Table 1 and Table 2, respectively. To point out a few statistics, the mean, min, and max age at diagnosis are lower for breast cancer compared to prostate cancer.</p>
         <div class="summarystattables">
             <table class="table table-striped">
                 <tr>
@@ -32,7 +58,7 @@
                         <td>{{v}}</td>
                     </tr>
                 {% endfor %}
-                <caption><span>Table 1.</span></caption>
+                <caption><span class="figcaptionbold">Table 1.</span> Summary statistics for ages at breast cancer diagnosis for patients in the dataset. Note that each patient's age at diagnosis was recorded as an age range, so their age is assigned as the middle of the range.</caption>
             </table>
             <table class="table table-striped">
                 <tr>
@@ -45,9 +71,14 @@
                         <td>{{v}}</td>
                     </tr>
                 {% endfor %}
-                <caption><span>Table 2.</span></caption>
+                <caption><span class="figcaptionbold">Table 2.</span> Summary statistics for ages at prostate cancer diagnosis for patients in the dataset.</caption>
             </table>
         </div>
+        <p>Evaluating the columns of the breast cancer dataset piqued curiosity about the correlation between the age at diagnosis and time to a metastatic diagnosis for breast cancer. The correlation coefficient is about {{corr_middle_age_met_diagnosis}}, indicating a very weak correlation between these two variables. This correlation can be visualized in Figure 3. No clear pattern is seen, meaning one is not a good indicator of the other.</p>
+        <figure class="figure">
+            <img src="/b_cancer_age_time_scatter.png" alt="scatterplot comparing age at diagnosis (middle_age) of breast cancer and time to metastatic diagnosis of breast cancer" class="agedistfig">
+            <figcaption><span class="figcaptionbold">Figure 3.</span> Scatterplot comparing age at diagnosis (middle_age) of breast cancer and time to metastatic diagnosis of breast cancer.</figcaption>
+        </figure>
         <h2>Males and Females</h2>
         <p>Prostate cancer is strictly found in males, and most breast cancer is found in women. According to the <a href="https://www.bcrf.org/blog/male-breast-cancer-statistics-research/">Breast Cancer Research Foundation (BCRF) website</a>, "male breast cancer accounts for less than one percent of all breast cancer diagnoses," so it is quite rare. The breast cancer dataset was evaluated for any rare male patients, but the response returned was only "{{unique_sexes}}".</p>
     </div>

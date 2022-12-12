@@ -22,17 +22,17 @@ def display_home():
 
 @app.route("/age_and_sex")
 def display_age_sex():
-    b_cancer_df_returns = manipulate_b_cancer_df()
-    p_cancer_df_returns = manipulate_p_cancer_df()
-    # getting summary statistics for 'middle_age'
+    b_cancer_df_returns = b_cancer_df()
+    p_cancer_df_returns = p_cancer_df()
+    # getting each part needed from the function returns
     sum_stats_bc = b_cancer_df_returns[1]
     unique_sexes = b_cancer_df_returns[2]
     corr_middle_age_met_diagnosis = b_cancer_df_returns[3]
 
     sum_stats_pc = p_cancer_df_returns[1]
-    return render_template("age_and_sex.html", sum_stats_bc = sum_stats_bc, unique_sexes = unique_sexes, corr_middle_age_met_diagnosis = corr_middle_age_met_diagnosis, sum_stats_pc = sum_stats_pc)
+    return render_template("age_and_sex.html", sum_stats_bc = sum_stats_bc, unique_sexes = unique_sexes, corr_middle_age_met_diagnosis = round(corr_middle_age_met_diagnosis, 3), sum_stats_pc = sum_stats_pc)
 
-def manipulate_b_cancer_df():
+def b_cancer_df():
     # read the breast cancer data file with pandas to make a dataframe
     b_data = pd.read_csv('brca_mbcproject_2022_clinical_data.tsv', sep='\t')
     # selecting columns from the original dataframe to have in this new dataframe
@@ -77,11 +77,25 @@ def b_cancer_age_dist_png():
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype = 'image/png')
 
+@app.route('/b_cancer_age_time_scatter.png')
+def b_cancer_scatterplot_png():
+    fig = create_b_cancer_scatterplot_png()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype = 'image/png')
+
 def create_b_cancer_age_dist_png():
-    age_sort = manipulate_b_cancer_df()[0].sort_values('MedR Age at Diagnosis')
+    age_sort = b_cancer_df()[0].sort_values('MedR Age at Diagnosis')
     fig, ax = plt.subplots()
     ax = sns.histplot(data=age_sort, x="MedR Age at Diagnosis")
     return fig
+    
+def create_b_cancer_scatterplot_png():
+    b_cancer = b_cancer_df()[0]
+    fig, ax = plt.subplots()
+    ax = sns.scatterplot(data=b_cancer, x="middle_age", y="MedR Time to Metastatic Diagnosis (Calculated Months)", hue='middle_age')
+    return fig
+
 
 
 @app.route('/p_cancer_age_dist.png')
@@ -92,12 +106,12 @@ def p_cancer_age_dist_png():
     return Response(output.getvalue(), mimetype = 'image/png')
 
 def create_p_cancer_age_dist_png():
-    p_cancer = manipulate_p_cancer_df()[0]
+    p_cancer = p_cancer_df()[0]
     fig, ax = plt.subplots()
     ax = sns.histplot(data=p_cancer, x="Diagnosis Age", binwidth=4)
     return fig
 
-def manipulate_p_cancer_df():
+def p_cancer_df():
     # read the prostate cancer data file with pandas to make a dataframe
     p_cancer = pd.read_csv('prostate_dkfz_2018_clinical_data.tsv', sep='\t')
 
@@ -114,11 +128,15 @@ def manipulate_p_cancer_df():
     # Verifying that there are no unexpected data points here
     print(p_cancer['Sex'].unique())
 
-    # # getting summary statistics for 'Diagnosis Age'
+    # getting summary statistics for 'Diagnosis Age'
     sum_stats_pc = p_cancer['Diagnosis Age'].describe()
     sum_stats_pc = sum_stats_pc.to_dict()
 
     return [p_cancer, sum_stats_pc]
+
+@app.route("/machine_learning")
+def display_machine_learning():
+    return render_template("machine_learning.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
