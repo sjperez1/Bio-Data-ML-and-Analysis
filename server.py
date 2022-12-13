@@ -11,7 +11,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import classification_report
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
+# from matplotlib.figure import Figure
+# The following import and use() were to get rid of the threading error
+import matplotlib
+matplotlib.use('Agg')
 import io
 from flask import Flask, Response, render_template
 app = Flask(__name__)
@@ -31,6 +34,32 @@ def display_age_sex():
 
     sum_stats_pc = p_cancer_df_returns[1]
     return render_template("age_and_sex.html", sum_stats_bc = sum_stats_bc, unique_sexes = unique_sexes, corr_middle_age_met_diagnosis = round(corr_middle_age_met_diagnosis, 3), sum_stats_pc = sum_stats_pc)
+
+@app.route('/b_cancer_age_dist.png')
+def b_cancer_age_dist_png():
+    fig = create_b_cancer_age_dist_png()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype = 'image/png')
+
+def create_b_cancer_age_dist_png():
+    age_sort = b_cancer_df()[0].sort_values('MedR Age at Diagnosis')
+    fig, ax = plt.subplots()
+    ax = sns.histplot(data=age_sort, x="MedR Age at Diagnosis")
+    return fig
+
+@app.route('/b_cancer_age_time_scatter.png')
+def b_cancer_scatterplot_png():
+    fig = create_b_cancer_scatterplot_png()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype = 'image/png')
+
+def create_b_cancer_scatterplot_png():
+    b_cancer = b_cancer_df()[0]
+    fig, ax = plt.subplots()
+    ax = sns.scatterplot(data=b_cancer, x="middle_age", y="MedR Time to Metastatic Diagnosis (Calculated Months)", hue='middle_age')
+    return fig
 
 def b_cancer_df():
     # read the breast cancer data file with pandas to make a dataframe
@@ -69,33 +98,6 @@ def b_cancer_df():
     # Correlation between middle age and time to metastatic diagnosis
     corr_middle_age_met_diagnosis = np.corrcoef(b_cancer['middle_age'],b_cancer['MedR Time to Metastatic Diagnosis (Calculated Months)'])[0][1] # this function returns a 4 number matrix and can use the second column in first row or first column in second row to get correlation coefficient.
     return [b_cancer, sum_stats_bc, unique_sexes[0], corr_middle_age_met_diagnosis] # only getting unique_sexes at 0 position of array because printing the array showed only one value in it.
-
-@app.route('/b_cancer_age_dist.png')
-def b_cancer_age_dist_png():
-    fig = create_b_cancer_age_dist_png()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype = 'image/png')
-
-@app.route('/b_cancer_age_time_scatter.png')
-def b_cancer_scatterplot_png():
-    fig = create_b_cancer_scatterplot_png()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype = 'image/png')
-
-def create_b_cancer_age_dist_png():
-    age_sort = b_cancer_df()[0].sort_values('MedR Age at Diagnosis')
-    fig, ax = plt.subplots()
-    ax = sns.histplot(data=age_sort, x="MedR Age at Diagnosis")
-    return fig
-    
-def create_b_cancer_scatterplot_png():
-    b_cancer = b_cancer_df()[0]
-    fig, ax = plt.subplots()
-    ax = sns.scatterplot(data=b_cancer, x="middle_age", y="MedR Time to Metastatic Diagnosis (Calculated Months)", hue='middle_age')
-    return fig
-
 
 
 @app.route('/p_cancer_age_dist.png')
