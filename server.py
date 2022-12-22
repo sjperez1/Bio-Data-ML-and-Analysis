@@ -45,7 +45,7 @@ def b_cancer_age_dist_png():
 def create_b_cancer_age_dist_png():
     age_sort = b_cancer_df()[0].sort_values('MedR Age at Diagnosis')
     fig, ax = plt.subplots()
-    ax = sns.histplot(data=age_sort, x="MedR Age at Diagnosis")
+    ax = sns.histplot(data=age_sort, x="MedR Age at Diagnosis").set(title="Histogram of Medr Age at Diagnosis")
     return fig
 
 @app.route('/b_cancer_age_time_scatter.png')
@@ -58,7 +58,7 @@ def b_cancer_scatterplot_png():
 def create_b_cancer_scatterplot_png():
     b_cancer = b_cancer_df()[0]
     fig, ax = plt.subplots()
-    ax = sns.scatterplot(data=b_cancer, x="middle_age", y="MedR Time to Metastatic Diagnosis (Calculated Months)", hue='middle_age')
+    ax = sns.scatterplot(data=b_cancer, x="middle_age", y="MedR Time to Metastatic Diagnosis (Calculated Months)", hue='middle_age').set(title="Scatterplot of Diagnosis Age and Time to Metastatic Diagnosis")
     return fig
 
 def b_cancer_df():
@@ -110,7 +110,7 @@ def p_cancer_age_dist_png():
 def create_p_cancer_age_dist_png():
     p_cancer = p_cancer_df()[0]
     fig, ax = plt.subplots()
-    ax = sns.histplot(data=p_cancer, x="Diagnosis Age", binwidth=4)
+    ax = sns.histplot(data=p_cancer, x="Diagnosis Age", binwidth=4).set(title="Histogram of Diagnosis Age")
     return fig
 
 def p_cancer_df():
