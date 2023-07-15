@@ -78,7 +78,6 @@ figcaption {
     background-color: white;
     width: 100%;
     height: min-content;
-    /* the following will resize the image to fit in its container */
     table-layout: fixed;
 }
 
