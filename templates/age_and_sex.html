@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}">
-    <title>BCMB 424 - Age and Sex</title>
+    <title>Age and Sex</title>
 </head>
 <body class="additionalpagebody">
+    <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Breast and Prostate Cancer Analysis</a>
@@ -30,6 +31,7 @@
             </div>
         </div>
     </nav>
+    <!-- content container -->
     <div class="container" id="container2">
         <h1 class="title">Basic Statistics About Age and Sex</h1>
         <h2>Age</h2>
@@ -37,11 +39,11 @@
         <p>Looking at the distributions of age at diagnosis for the breast cancer (Figure 1) and prostate cancer (Figure 2) datasets, it is apparent that there is a more even distribution for breast cancer samples, although they are both skewed to the right. The highest peak is seen at a younger age in breast cancer compared to in prostate cancer.</p>
         <div id="agedistfigcontainer">
             <figure class="twofigures">
-                <img src="/b_cancer_age_dist.png" alt="breast cancer age distribution graph" class="agedistfig">
+                <img src={{figure1}} alt="breast cancer age distribution graph" class="fig">
                 <figcaption><span class="figcaptionbold">Figure 1.</span> Distribution of ages at breast cancer diagnosis for patients in the dataset. Note that each patient's age at diagnosis was recorded as an age range, which can be represented by the numbers on the x-axis.</figcaption>
             </figure>
             <figure class="twofigures">
-                <img src="/p_cancer_age_dist.png" alt="prostate cancer age distribution graph" class="agedistfig">
+                <img src={{figure2}} alt="prostate cancer age distribution graph" class="fig">
                 <figcaption><span class="figcaptionbold">Figure 2.</span> Distribution of ages at prostate cancer diagnosis for patients in the dataset.</figcaption>
             </figure>
         </div>
@@ -76,7 +78,7 @@
         </div>
         <p>Evaluating the columns of the breast cancer dataset piqued curiosity about the correlation between the age at diagnosis and time to a metastatic diagnosis for breast cancer. The correlation coefficient is about {{corr_middle_age_met_diagnosis}}, indicating a very weak correlation between these two variables. This correlation can be visualized in Figure 3. No clear pattern is seen, meaning one is not a good indicator of the other.</p>
         <figure class="figure">
-            <img src="/b_cancer_age_time_scatter.png" alt="scatterplot comparing age at diagnosis (middle_age) of breast cancer and time to metastatic diagnosis of breast cancer" class="agedistfig">
+            <img src={{figure3}} alt="scatterplot comparing age at diagnosis (middle_age) of breast cancer and time to metastatic diagnosis of breast cancer" class="fig">
             <figcaption><span class="figcaptionbold">Figure 3.</span> Scatterplot comparing age at diagnosis (middle_age) of breast cancer and time to metastatic diagnosis of breast cancer.</figcaption>
         </figure>
         <h2>Males and Females</h2>
