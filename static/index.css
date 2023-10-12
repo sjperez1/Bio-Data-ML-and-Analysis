@@ -94,15 +94,16 @@ figcaption {
     font-weight: bold;
 }
 
-
+/* summarystattables id is for the container holding the two summary statistics tables for age and sex */
 @media screen and (min-width: 505px) {
-    .summarystattables {
+    #summarystattables {
         display: flex;
         justify-content: center;
         gap: 15px;
     }
 }
 
+/* formats the two summary statistics tables */
 .table {
     background-color: white;
     width: 100%;
@@ -110,10 +111,12 @@ figcaption {
     table-layout: fixed;
 }
 
+/* prevents overflow in tables */
 th, td {
     overflow-wrap: break-word;
 }
 
+/* formats captions for tables */
 caption {
     color: black;
     position: relative;
