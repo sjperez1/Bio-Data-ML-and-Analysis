@@ -8,7 +8,8 @@ Next, clone this repository and use the terminal to navigate to the folder holdi
 
 To activate the virtual environment, paste the following into the terminal: 
 ```pipenv shell```
-    NOTE: To deactivate the virtual environment at some point, type "exit" into the terminal.
+
+To deactivate the virtual environment at some point, type ```exit``` into the terminal.
 
 Run the following commands in the terminal to download packages:
     ```
@@ -18,8 +19,7 @@ Run the following commands in the terminal to download packages:
     pip install numpy
     ```
 
-Paste the following in the terminal to run the app: 
-    ```python server.py```
-    - This command should give a link to where it is running. Open this link in your browser.
-    - To stop this from running, click in the terminal and press CTRL + C
-    - It can be run again by typing ```python server.py```, or when done with viewing the project, deactivate the virtual environment by typing ```exit``` in the terminal.
+Paste the following in the terminal to run the app: ```python server.py```
+  - This command should give a link to where it is running. Open this link in your browser.
+  - To stop this from running, click in the terminal and press CTRL + C
+  - It can be run again by typing ```python server.py```, or when done with viewing the project, deactivate the virtual environment by typing ```exit``` in the terminal.
