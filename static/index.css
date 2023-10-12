@@ -1,82 +1,106 @@
-.homebody {
-    background-color: #6B9080;
-}
-
-.additionalpagebody {
-    background-color: #54494B;
-}
-
+/* formats navbar on all pages */
 .navbar {
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color:floralwhite;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: rgb(172, 192, 180);
+    border-bottom: 1px solid rgb(148, 146, 146);
 }
 
+/* divs with container class hold of the information on a page, except the navbar */
 .container {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 40px;
     margin-bottom: 40px;
-    padding: 30px;
-    border-radius: 8px;
 }
 
-#container1 {
-    background-color: #A4C3B2;
-}
-
-#container2, #container3 {
-    background-color: #CCE3DE;
-}
-
+/* formats main title on all pages */
 .title {
     text-align: center;
-    text-decoration: underline;
+    margin-bottom: 35px;
 }
 
-p {
-    text-indent: 50px;
-}
-
-#agedistfigcontainer {
-    margin: 0 auto;
+/* #columns is the container for columns #col1 and #col2 on the home page */
+#columns {
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    gap: 25px;
 }
 
-.twofigures {
-    width: 50%;
-    margin: 0 auto;
+#col1 {
+    width: 80%;
 }
 
-.figure {
-    width: 75%;
-    /* using display: block and margin: auto to center the figure within the container */
-    display: block;
-    margin: auto;
+#col2 {
+    width: 20%;
 }
 
+/* formats subsection titles on all pages */
+h2 {
+    font-size: 1.4em;
+}
+
+/* age distribution figure container contains figures 1 and 2, as well as associated captions */
+@media screen and (min-width: 1000px) {
+    #agedistfigcontainer {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    /* class applies to the figure tags for figures 1 and 2, which have nested img and figcaption tags */
+    .twofigures {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
+/* singlefigure class applies to figures 3-5 (each figure has its own line), which has nested img and figcaption tags */
+@media screen and (max-width: 775px) {
+    .singlefigure {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 776px) {
+    .singlefigure {
+        width: 80%;
+        display: block;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .singlefigure {
+        width: 60%;
+    }
+}
+
+/* applies to img tag associated with each figure */
 .fig {
     width: 100%;
     height: auto;
-    /* the following will resize the image to fit in its container */
     object-fit: contain;
 }
 
+/* formats figcaption tags associated with each figure */
 figcaption {
     position: relative;
     width: 100%;
+    margin-bottom: 20px;
 }
 
-.figcaptionbold {
+/* span tag to format the label of each figure caption */
+.figcaptionlabel {
     font-weight: bold;
 }
 
-.summarystattables {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+
+@media screen and (min-width: 505px) {
+    .summarystattables {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
 }
 
 .table {
@@ -96,6 +120,7 @@ caption {
     width: 100%;
 }
 
+/* allows only screenreaders to see the text indicating which tab is currently selected */
 .sr-only {
     position: absolute;
     width: 1px;

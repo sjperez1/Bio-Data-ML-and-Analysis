@@ -19,34 +19,46 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/age_and_sex">Age and Sex</a>
-                <a class="nav-item nav-link" href="/machine_learning">Machine Learning</a>
+                <a class="nav-item nav-link active" href="/age_and_sex">Age and Sex</a>
+                <a class="nav-item nav-link active" href="/machine_learning">Machine Learning</a>
             </div>
         </div>
     </nav>
 
     <!-- content container -->
-    <div class="container" id="container1">
+    <div class="container">
         <h1 class="title">Analysis of Breast and Prostate Cancer Datasets</h1>
-        <h2>About the Data</h2>
-        <p>Two datasets will be analyzed, one having breast cancer data and one having prostate cancer data. Both of
-            them were found through <a href="http://www.cbioportal.org/">cBioPortal</a> and are available for download
-            at the following links: <a
-                href="http://www.cbioportal.org/study/clinicalData?id=brca_mbcproject_2022">breast cancer dataset</a>
-            and <a href="http://www.cbioportal.org/study/clinicalData?id=prostate_dkfz_2018">prostate cancer
-                dataset</a>.</p>
-        <p>There are 379 rows in the breast cancer dataset, representing the number of samples collected from 301
-            patients, and 142 columns, representing a piece of information about the patient or sample. The prostate
-            cancer dataset is constructed similarly, with 324 rows representing the number of samples collected from 292
-            patients, and 26 columns that each provide more information about the patient or sample. Columns/variables
-            to consider in analysis were narrowed down by their relevance to the subject and interest in the analysis
-            results. Rows that were left blank in the columns of interest were dropped before analysis.</p>
-        <h2>View Analysis</h2>
-        <ul>
-            <li><a href="/age_and_sex">Basic Statistics About Age and Sex</a></li>
-            <li><a href="/machine_learning">Machine Learning</a></li>
-        </ul>
+        <!-- content in columns -->
+        <div id="columns">
+
+            <!-- first column -->
+            <div id="col1">
+                <h2>About the Data</h2>
+                <p>Two datasets will be analyzed, one having breast cancer data and one having prostate cancer data. Both of
+                    them were found through <a href="http://www.cbioportal.org/">cBioPortal</a> and are available for download
+                    at the following links: <a
+                        href="http://www.cbioportal.org/study/clinicalData?id=brca_mbcproject_2022">breast cancer dataset</a>
+                    and <a href="http://www.cbioportal.org/study/clinicalData?id=prostate_dkfz_2018">prostate cancer
+                        dataset</a>.</p>
+                <p>There are 379 rows in the breast cancer dataset, representing the number of samples collected from 301
+                    patients, and 142 columns, representing a piece of information about the patient or sample. The prostate
+                    cancer dataset is constructed similarly, with 324 rows representing the number of samples collected from 292
+                    patients, and 26 columns that each provide more information about the patient or sample. Columns/variables
+                    to consider in analysis were narrowed down by their relevance to the subject and interest in the analysis
+                    results. Rows that were left blank in the columns of interest were dropped before analysis.</p>
+            </div>
+
+            <!-- second column -->
+            <div id="col2">
+                <h2>View Analysis</h2>
+                <ul>
+                    <li><a href="/age_and_sex">Basic Statistics About Age and Sex</a></li>
+                    <li><a href="/machine_learning">Machine Learning</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
+    <!-- script needed for navbar functionality -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

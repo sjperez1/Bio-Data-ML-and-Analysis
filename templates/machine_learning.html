@@ -19,28 +19,33 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/">Home</a>
-                <a class="nav-item nav-link" href="/age_and_sex">Age and Sex</a>
-                <a class="nav-item nav-link" href="/machine_learning">Machine Learning <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/age_and_sex">Age and Sex</a>
+                <a class="nav-item nav-link active" href="/machine_learning">Machine Learning <span class="sr-only">(current)</span></a>
             </div>
         </div>
     </nav>
 
     <!-- content container -->
-    <div class="container" id="container3">
+    <div class="container">
         <h1 class="title">Machine Learning</h1>
+
+        <!-- first subsection -->
         <h2>Breast Cancer</h2>
         <p>For the first machine learning model, I wanted to predict the age at diagnosis for breast cancer patients using their mutation count. Since the ages were given in ranges, I thought it would be best to use a classification machine learning model instead of regression as there were only a handful of age ranges in the dataset, so I tried a logistic regression, support vector classifcation, and random forest classification models. After evaluating their accuracy and looking at confusion matricies, I determined that the support vector classifer yielded the best results with an accuracy of {{accuracy}}%. The model wasn't able to capture the higher age ranges well, which is because there were very few people in the higher age ranges in the dataset, so when the model was trained, it likley didn't have many higher age ranged samples to train off of. This is why I originally stratified the train and split to try to capture some of the higher age range samples while training the model. However, despite stratifying the data, there were 29 patients in the higher age ranges (48-68) that the model failed to predict, as seen in Figure 4. Thus, these results appear to be over predicting lower age patients.</p>
-        <figure class="figure">
+        <figure class="singlefigure">
             <img src={{figure4}} alt="confusion matrix for SVC" class="fig">
-            <figcaption><span class="figcaptionbold">Figure 4.</span> Confusion matrix displaying actuals versus predictions for the age at diagnosis of breast cancer by mutation count.</figcaption>
+            <figcaption><span class="figcaptionlabel">Figure 4.</span> Confusion matrix displaying actuals versus predictions for the age at diagnosis of breast cancer by mutation count.</figcaption>
         </figure>
+
+        <!-- second subsection -->
         <h2>Prostate Cancer</h2>
         <p>For the second machine learning model, I wanted to predict prostate cancer patient's age based on their mutation count. Age in this data set was a number and not a range, thus it felt more appropriate to use a continuous regression method rather than classification. First I used a linear regression model, but it was heavily skewed towards outliers and did not do a good job on picking up on all of the patients who had 0 mutations. Since I realized that the data did not follow a linear trend, I used a support vector regression model. After adjusting the C parameter of the model, I was able to get relatively decent test and train accuracy. Before tuning the model I was getting 15% train accuracy and 8% test accuracy. After tuning the model I got 40% train accuracy and 21% test accuracy. Thus, there is still some overfitting occuring in the model, but in general the model is producing more accurate results now. Also, the graph (Figure 5) comparing the predicted values versus the actuals demonstrates that with only one feature and some slight hypertuning, we can still predict fairly well with limited information.</p>
-        <figure class="figure">
+        <figure class="singlefigure">
             <img src={{figure5}} alt="confusion matrix for SVC" class="fig">
-            <figcaption><span class="figcaptionbold">Figure 5.</span> A scatterplot comparing predicted age of diagnosis by the actual values where the black line represents where the points would lie if all of the predictions were correct.</figcaption>
+            <figcaption><span class="figcaptionlabel">Figure 5.</span> A scatterplot comparing predicted age of diagnosis by the actual values where the black line represents where the points would lie if all of the predictions were correct.</figcaption>
         </figure>
     </div>
+    <!-- script needed for navbar functionality -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
