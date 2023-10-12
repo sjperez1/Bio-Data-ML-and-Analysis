@@ -125,6 +125,7 @@ def b_cancer_df():
     # Predicting age for every mutation count
     y_pred = svm.predict(X_test.values.reshape(-1, 1))
     print(classification_report(y_test,y_pred))
+    
     # making figure 4 and encoding it in base64 string to be decoded on the front end
     c_matrix = confusion_matrix(y_true=y_test, y_pred=y_pred)
     fig4 = Figure() 
